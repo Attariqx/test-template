@@ -31,7 +31,10 @@ Route::resource('siswa', SiswaController::class);
 // route barang
 Route::resource('barang', BarangController::class);
 
-Route::get('test-template', function()
-{
-    return view('layouts.admin');
+Route::group(['prefix'=>'admin','middleware'=>['auth']],
+    function () {
+Route::get('/', function(){
+    return view('admin.index');
+});
+
 });
